@@ -15,6 +15,16 @@ function(ADD_RUN_TARGET tname target)
     )
 endfunction()
 
+# Fix DLL not found problem on Windows 
+# Note: Windows shared libraries do not have RPATH or RUNPATH
+# DLLs are searched first at current directories and then in directories 
+# listed in $PATH variable.
+if(WINDOWS)
+    set(LIBRARY_OUTPUT_PATH    "${CMAKE_BINARY_DIR}/bin")
+    set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
+endif()
+
+
     #=============================================#
     #  T A R G E T S  C O N F I G U R A T I O N   #  
     #=============================================#
@@ -56,6 +66,7 @@ install( TARGETS  app1 app2 util tool
          LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}          
          # Static libraries: *.a 
          ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+
 )
 
 install(FILES LICENSE.txt DESTINATION data)
