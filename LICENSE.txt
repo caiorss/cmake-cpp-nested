@@ -1,0 +1,7 @@
+TEXT of BSD free software license to be installed at location path. 
+
+line 1
+line 2
+line 3
+... ... ... ... 
+line N
