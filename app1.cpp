@@ -5,7 +5,7 @@
 
 int main(int argc, char** argv)
 {
-	std::cout << " [INFO] Application 2 Called Ok." << std::endl;
+	std::cout << " [INFO] Application 1 Called Ok." << std::endl;
 
 	util::util_function(100);
 	tool::too_lib_function();
