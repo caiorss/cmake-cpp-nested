@@ -20,8 +20,8 @@ endfunction()
 # DLLs are searched first at current directories and then in directories 
 # listed in $PATH variable.
 if(WIN32)
-    set(LIBRARY_OUTPUT_PATH    "${CMAKE_BINARY_DIR}/bin")
-    set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
+    set(LIBRARY_OUTPUT_PATH    "${CMAKE_BINARY_DIR}")
+    set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
 endif()
 
 
