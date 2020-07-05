@@ -19,7 +19,7 @@ endfunction()
 # Note: Windows shared libraries do not have RPATH or RUNPATH
 # DLLs are searched first at current directories and then in directories 
 # listed in $PATH variable.
-if(WINDOWS)
+if(WIN32)
     set(LIBRARY_OUTPUT_PATH    "${CMAKE_BINARY_DIR}/bin")
     set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
 endif()
