@@ -36,14 +36,17 @@ add_subdirectory(lib_tool)
        add_executable( app1 app1.cpp )
 target_link_libraries( app1 lib::util lib::tool )
 
-if(UNIX)
-    # Set RPATH in the executable for making it relocatable on Unix.
-    # It allows installing the application on any directory or 
-    # running the application from any directory without 
-    # 'symbol not found or library not found' errros. 
-    #
-    # Note: The variable $ORIGIN is the executable absolute directory
+# Set RPATH in the executable for making it relocatable on Unix.
+# It allows installing the application on any directory or 
+# running the application from any directory without 
+# 'symbol not found or library not found' errros. 
+#
+# Note: The variable $ORIGIN is the executable absolute directory
+if(UNIX AND NOT APPLE)
     set_target_properties( app1 PROPERTIES INSTALL_RPATH "$ORIGIN:$ORIGIN/../lib")                       
+elseif(APPLE)
+    # For MacOSX (MacO - Binary Files)
+    set_target_properties( app1 PROPERTIES INSTALL_RPATH "@executable_path/../lib")                       
 endif()
 
        add_executable( app2 app2.cpp )
