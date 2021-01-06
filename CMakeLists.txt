@@ -7,6 +7,9 @@ project(CMake_With_Makefile)
 set(CMAKE_CXX_STANDARD 17)     
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
+# Export ALL DLLs symbols on Windows without __declspec(xxxx) annotations.
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS true)
+
 function(ADD_RUN_TARGET tname target)
     add_custom_target( ${tname}
         COMMAND ${target}
@@ -35,6 +38,13 @@ add_subdirectory(lib_tool)
 
        add_executable( app1 app1.cpp )
 target_link_libraries( app1 lib::util lib::tool )
+
+
+if(_WIN32)
+    set_target_properties( lib::util PROPERTIES 
+                                     OUTPUT_NAME Util 
+                                     CLEAN_DIRECTORY_OUTPUT 1 )  
+endif()
 
 # Set RPATH in the executable for making it relocatable on Unix.
 # It allows installing the application on any directory or 
